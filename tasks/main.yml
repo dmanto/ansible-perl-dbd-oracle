@@ -1,0 +1,5 @@
+- include: "{{role_path}}/tasks/redhat.yml"
+  when: ansible_os_family == 'RedHat'
+
+- include: "{{role_path}}/tasks/debian.yml"
+  when: ansible_os_family == 'Debian'

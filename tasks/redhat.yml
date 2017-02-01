@@ -1,0 +1,7 @@
+- name: Installs rpms
+  shell: >
+  rpm -i oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm &&
+  rpm -i oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm &&
+  rpm -i oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+  args:
+    creates: /usr/lib/oracle/12.1/client64/bin/1-sqlplus

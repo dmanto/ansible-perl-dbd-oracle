@@ -1,0 +1,4 @@
+---
+# defaults file for plenv
+oracle_client_version: 12.1
+oracle_client_subversion: 0.2.0-1
