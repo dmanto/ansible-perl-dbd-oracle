@@ -1,3 +1,9 @@
+---
+- find:
+    paths: "{{ role_path }}/files/oracle"
+    patterns: "*.rpm"
+  register: oracle_files
+
 - include: "{{role_path}}/tasks/redhat.yml"
   when: ansible_os_family == 'RedHat'
 
