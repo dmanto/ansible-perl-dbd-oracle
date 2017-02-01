@@ -8,8 +8,8 @@
 
 - name: install rmps with alien package
   shell: >
-    alien -i rpm_0 &&
-    alien -i rpm_1 &&
-    alien -i rpm_2
+    alien -i {{ oracle_files[0].path }} &&
+    alien -i {{ oracle_files[1].path }} &&
+    alien -i {{ oracle_files[2].path }}
   args:
     creates: /usr/lib/oracle/12.1/client64/bin/1-sqlplus

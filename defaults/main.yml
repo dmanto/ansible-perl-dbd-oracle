@@ -5,7 +5,3 @@
     paths: "{{ role_path }}/files/oracle"
     patterns: "*.rpm"
   register: oracle_files
-
-rpm_0: "{{ oracle_files[0].path }}"
-rpm_1: "{{ oracle_files[1].path }}"
-rpm_2: "{{ oracle_files[2].path }}"
