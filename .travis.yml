@@ -49,10 +49,10 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Ensure plenv is installed.
-  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && which plenv"'
+#  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && which plenv"'
 
   # Ensure carton is installed.
-  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && plenv which carton"'
+#  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && plenv which carton"'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
