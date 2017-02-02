@@ -1,13 +1,5 @@
 ---
-- find:
-    paths: "{{ role_path }}/files/oracle"
-    patterns: "*.rpm"
-  register: oracle_files
-
-- debug:
-    msg: "archivo 0 es {{ oracle_files[0].path }}"
-
 - name: Installs rpms
-  shell: "rpm -i {{ oracle_files[0].path }} && rpm -i {{ oracle_files[1].path }} && rpm -i {{ oracle_files[2].path }}"
+  shell: "yum localinstall {{ role_path }}/files/oracle/*.rpm"
   args:
     creates: "/usr/lib/oracle/12.1/client64/bin/sqlplus"
