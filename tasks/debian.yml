@@ -1,3 +1,4 @@
+---
 - name: install dependencies package - Debian
   package: name={{ item }} state=latest
   become: yes

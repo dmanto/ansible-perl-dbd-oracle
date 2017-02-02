@@ -1,5 +1,10 @@
-- name: Display paths
-  debug:
+---
+- find:
+    paths: "{{ role_path }}/files/oracle"
+    patterns: "*.rpm"
+  register: oracle_files
+
+- debug:
     msg: "archivo 0 es {{ oracle_files[0].path }}"
 
 - name: Installs rpms
