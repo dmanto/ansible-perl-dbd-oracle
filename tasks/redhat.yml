@@ -6,6 +6,6 @@
 
 - name: Installs rpms
   yum:
-    name:  "{{ item.path }}"
+    name:  "{{ item }}"
     state: present
-  with_items: "{{ oracle_rpms.files }}"
+  with_items: "{{ oracle_rpms.files  | sort(attribute='path') | map(attribute='path') | list }}"
