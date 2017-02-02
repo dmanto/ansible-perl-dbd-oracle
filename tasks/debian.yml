@@ -12,4 +12,4 @@
     alien -i {{ oracle_files[1].path }} &&
     alien -i {{ oracle_files[2].path }}
   args:
-    creates: /usr/lib/oracle/12.1/client64/bin/1-sqlplus
+    creates: /usr/lib/oracle/12.1/client64/bin/sqlplus

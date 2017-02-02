@@ -1,7 +1,4 @@
 - name: Installs rpms
-  shell: >
-    rpm -i {{ oracle_files[0].path }} &&
-    rpm -i {{ oracle_files[1].path }} &&
-    rpm -i {{ oracle_files[2].path }}
+  shell: "rpm -i {{ oracle_files[0].path }} && rpm -i {{ oracle_files[1].path }} && rpm -i {{ oracle_files[2].path }}"
   args:
-    creates: /usr/lib/oracle/12.1/client64/bin/1-sqlplus
+    creates: /usr/lib/oracle/12.1/client64/bin/sqlplus
