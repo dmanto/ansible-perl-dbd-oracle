@@ -12,3 +12,7 @@
   args:
     creates: /usr/lib/oracle/12.1/client64/bin/sqlplus
   become: yes
+
+- name: Installs cpanm
+  apt: name=cpanm state=latest
+  when: cpanm_installed.stdout == ''

@@ -4,13 +4,12 @@
     patterns: "*.rpm"
   register: oracle_rpms
 
-- name: Installs rpms, RedHar except Fedora
-  when: ansible_distribution != 'Fedora'
-  yum:
+- name: Installs rpms, RedHar, distro Fedora
+  dnf:
     name:  "{{ item.path }}"
-    state: present
+    state: latest
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
 
 - name: Installs cpanm
-  yum: name=cpanm state=latest
+  dnf: name=cpanm state=latest
   when: cpanm_installed.stdout == ''

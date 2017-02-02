@@ -1,6 +1,17 @@
 ---
-- include: "{{role_path}}/tasks/redhat.yml"
-  when: ansible_os_family == 'RedHat'
+- name: Check if cpanm is installed
+  shell: which cpanm
+  register: cpanm_installed
 
 - include: "{{role_path}}/tasks/debian.yml"
   when: ansible_os_family == 'Debian'
+
+- include: "{{role_path}}/tasks/redhat.yml"
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution != 'Fedora'
+
+- include: "{{role_path}}/tasks/fedora.yml"
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution == 'Fedora'
