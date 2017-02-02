@@ -3,6 +3,7 @@
   shell: which cpanm
   ignore_errors: yes
   register: cpanm_installed
+  changed_when: false
 
 - include: "{{role_path}}/tasks/debian.yml"
   when: ansible_os_family == 'Debian'
