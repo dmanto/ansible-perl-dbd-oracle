@@ -11,7 +11,7 @@
     state: present
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
 
-  - name: Installs rpms, RedHar, distro Fedora
+- name: Installs rpms, RedHar, distro Fedora
   when: ansible_distribution == 'Fedora'
   dnf:
     name:  "{{ item.path }}"
