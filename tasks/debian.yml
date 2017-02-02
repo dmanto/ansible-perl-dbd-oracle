@@ -14,5 +14,5 @@
   become: yes
 
 - name: Installs cpanm
-  apt: name=cpanm state=latest
+  apt: name=cpanminus state=latest
   when: cpanm_installed.stdout == ''

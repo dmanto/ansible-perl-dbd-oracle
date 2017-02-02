@@ -11,5 +11,5 @@
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
 
 - name: Installs cpanm
-  dnf: name=cpanm state=latest
+  dnf: name=perl-App-cpanminus state=latest
   when: cpanm_installed.stdout == ''
