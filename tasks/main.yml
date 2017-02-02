@@ -1,6 +1,8 @@
 ---
 - name: Check if cpanm is installed
   shell: which cpanm
+  args:
+    warn: False
   register: cpanm_installed
 
 - include: "{{role_path}}/tasks/debian.yml"
