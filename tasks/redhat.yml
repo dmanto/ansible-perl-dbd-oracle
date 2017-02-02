@@ -16,9 +16,13 @@
   with_items:
     - perl-devel
     - perl-CPAN
-  when: cpanm_installed.stdout == ''
+  when: cpanm_installed.stdout == '' and ansible_distribution_major_version == "6"
 
 - name: Installs cpanm
   shell: "curl -L https://cpanmin.us | perl - App::cpanminus"
   become: yes
-  when: cpanm_installed.stdout == ''
+  when: cpanm_installed.stdout == '' and ansible_distribution_major_version == "6"
+
+- name: Installs cpanm on major version 7
+  yum: name=perl-App-cpanminus state=present update_cache=yes
+  when: cpanm_installed.stdout == '' and ansible_distribution_major_version == "7"
