@@ -8,4 +8,4 @@
   yum:
     name:  "{{ item.path }}"
     state: present
-  with_items: {{ oracle_rpms.files }}
+  with_items: "{{ oracle_rpms.files }}"
