@@ -5,7 +5,6 @@
   with_items:
     - alien
     - libaio1
-    - sudo
 
 - name: install rmps with alien package
   shell: "alien -i {{ role_path }}/files/oracle/*.rpm"

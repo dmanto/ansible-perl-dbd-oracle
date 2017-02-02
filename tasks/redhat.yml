@@ -1,6 +1,5 @@
 ---
 - name: Installs rpms
-  shell: "yum localinstall {{ role_path }}/files/oracle/*.rpm"
-  args:
-    creates: "/usr/lib/oracle/12.1/client64/bin/sqlplus"
-  become: yes
+  yum:
+    name:  "{{ role_path }}/files/oracle/*.rpm"
+    state: present
