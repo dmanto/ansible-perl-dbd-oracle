@@ -12,4 +12,3 @@
   args:
     creates: /usr/lib/oracle/12.1/client64/bin/sqlplus
   became: yes
-...
