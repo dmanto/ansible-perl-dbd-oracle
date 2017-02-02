@@ -13,7 +13,7 @@
 
 - name: Installs cpanm prerequisites
   yum: name={{ item }} state=present update_cache=yes
-  whit_items:
+  with_items:
     - perl-devel
     - perl-CPAN
   when: cpanm_installed.stdout == ''
@@ -22,4 +22,3 @@
   shell: "curl -L https://cpanmin.us | perl - App::cpanminus"
   become: yes
   when: cpanm_installed.stdout == ''
-  
