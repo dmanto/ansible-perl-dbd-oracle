@@ -1,5 +1,11 @@
 ---
+- find:
+    paths: "{{ role_path }}/files/oracle"
+    patterns: "*.rpm"
+register: oracle_rpms
+
 - name: Installs rpms
   yum:
-    name:  "{{ role_path }}/files/oracle/*.rpm"
+    name:  "{{ item.path }}"
     state: present
+  with_items: {{ oracle_rpms.files }}
