@@ -3,3 +3,4 @@
   shell: "yum localinstall {{ role_path }}/files/oracle/*.rpm"
   args:
     creates: "/usr/lib/oracle/12.1/client64/bin/sqlplus"
+  become: yes

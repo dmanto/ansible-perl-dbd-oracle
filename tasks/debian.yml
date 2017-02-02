@@ -11,4 +11,4 @@
   shell: "alien -i {{ role_path }}/files/oracle/*.rpm"
   args:
     creates: /usr/lib/oracle/12.1/client64/bin/sqlplus
-  became: yes
+  become: yes
