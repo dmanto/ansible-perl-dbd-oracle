@@ -11,6 +11,15 @@
     state: present
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
 
-- name: Installs cpanm
-  yum: name=perl-App-cpanminus state=present update_cache=yes
+- name: Installs cpanm prerequisites
+  yum: name={{ item }} state=present update_cache=yes
+  whit_items:
+    - perl-devel
+    - perl-CPAN
   when: cpanm_installed.stdout == ''
+
+- name: Installs cpanm
+  shell: "curl -L https://cpanmin.us | perl - App::cpanminus"
+  become: yes
+  when: cpanm_installed.stdout == ''
+  
