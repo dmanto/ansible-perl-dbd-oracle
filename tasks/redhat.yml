@@ -12,5 +12,5 @@
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
 
 - name: Installs cpanm
-  yum: name=perl-App-cpanminus state=present
+  yum: name=perl-App-cpanminus state=present update_cache=yes
   when: cpanm_installed.stdout == ''
