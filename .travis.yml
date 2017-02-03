@@ -51,8 +51,8 @@ script:
   # Ensure cpanm is installed.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "which cpanm"'
 
-  # Ensure carton is installed.
-#  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && plenv which carton"'
+  # Ensure DBD::Oracle is installed.
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "perl -MDBD::Oracle e 1"'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
