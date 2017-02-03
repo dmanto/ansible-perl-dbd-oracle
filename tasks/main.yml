@@ -18,19 +18,18 @@
     - ansible_os_family == 'RedHat'
     - ansible_distribution == 'Fedora'
 
-- name: Check if sudo is required for cpanm
-  shell: cpanm Test::Simple
+- name: Check if DBD::Oracle is installed
+  shell: perl -MDBD::Oracle -E say '1'
   ignore_errors: yes
-  register: cpanm_requires_sudo
+  register: dbd_oracle_installed
   changed_when: false
 
 - debug:
-    var: cpanm_requires_sudo
+    var: dbd_oracle_installed
 
-- name: Installs several prerequisites
-  shell: cpanm DBI
+- cpanm:
+    name: DBI
   become: yes
-  ignore_errors: yes
 
 - name: Installs DBD::Oracle
   shell:
@@ -46,4 +45,5 @@
   environment:
     - ORACLE_HOME: /usr/lib/oracle/12.1/client64
     - LD_LIBRARY_PATH: /usr/lib/oracle/12.1/client64/lib
-  ignore_errors: yes
+  when: dbd_oracle_installed.stdout != '1'
+  
