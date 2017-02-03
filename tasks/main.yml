@@ -31,7 +31,7 @@
   shell:
     cmd: |
       cpanm DBI Term::ReadKey Term::ReadLine::Perl <<EOF
-
+      exit
       EOF
   become: yes
   ignore_errors: yes
