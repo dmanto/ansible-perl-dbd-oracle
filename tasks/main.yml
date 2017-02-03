@@ -27,21 +27,25 @@
 - debug:
     var: cpanm_requires_sudo
 
-- expect:
-    command: cpanm DBI Term::ReadKey Term::ReadLine::Perl
-    responses:
-      ".*": "\n"
+- name: Installs several prerequisites
+  shell:
+    cmd: |
+      cpanm DBI Term::ReadKey Term::ReadLine::Perl <<EOF
+
+      EOF
   become: yes
   ignore_errors: yes
 
-- expect:
-    command: cpanm --look DBD::Oracle
-    responses:
-      ".*": perl Makefile.PL -l
-      ".*": make
-      ".*": make test
-      ".*": make install
-      ".*": exit
+- name: Installs DBD::Oracle
+  shell:
+    cmd: |
+      cpanm --look DBD::Oracle <<FINAL
+      perl Makefile.PL -l
+      make
+      make test
+      make install
+      exit
+      FINAL
   become: yes
   environment:
     - ORACLE_HOME: /usr/lib/oracle/12.1/client64
