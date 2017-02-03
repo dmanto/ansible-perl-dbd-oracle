@@ -30,7 +30,7 @@
 - expect:
     command: cpanm DBI Term::ReadKey Term::ReadLine::Perl
     responses:
-      ".*":"\n"
+      ".*": "\n"
   become: yes
   ignore_errors: yes
 
