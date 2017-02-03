@@ -19,7 +19,7 @@
     - ansible_distribution == 'Fedora'
 
 - name: Check if sudo is required for cpanm
-  shell: cpanm Test::Simple 2> >(grep -cm 1 '^!')
+  shell: cpanm Test::Simple
   ignore_errors: yes
   register: cpanm_requires_sudo
   changed_when: false
