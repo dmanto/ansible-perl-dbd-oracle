@@ -30,18 +30,20 @@
 - expect:
     command: cpanm DBI Term::ReadKey Term::ReadLine::Perl
     responses:
-      "":""
+      ".*":"\n"
   become: yes
+  ignore_errors: yes
 
 - expect:
     command: cpanm --look DBD::Oracle
     responses:
-      "": perl Makefile.PL -l
-      "": make
-      "": make test
-      "": make install
-      "": exit
+      ".*": perl Makefile.PL -l
+      ".*": make
+      ".*": make test
+      ".*": make install
+      ".*": exit
   become: yes
   environment:
     - ORACLE_HOME: /usr/lib/oracle/12.1/client64
     - LD_LIBRARY_PATH: /usr/lib/oracle/12.1/client64/lib
+  ignore_errors: yes
