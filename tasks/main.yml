@@ -28,11 +28,7 @@
     var: cpanm_requires_sudo
 
 - name: Installs several prerequisites
-  shell:
-    cmd: |
-      cpanm DBI Term::ReadKey Term::ReadLine::Perl <<EOF
-      exit
-      EOF
+  shell: cpanm DBI
   become: yes
   ignore_errors: yes
 
