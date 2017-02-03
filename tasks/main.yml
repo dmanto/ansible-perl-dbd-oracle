@@ -17,3 +17,12 @@
   when:
     - ansible_os_family == 'RedHat'
     - ansible_distribution == 'Fedora'
+
+- name: Check if sudo is required for cpanm
+  shell: cpanm Test::Simple 2> >(grep -cm 1 '^!')
+  ignore_errors: yes
+  register: cpanm_requires_sudo
+  changed_when: false
+
+- debug:
+    var: cpanm_requires_sudo
