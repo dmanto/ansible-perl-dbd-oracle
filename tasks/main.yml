@@ -43,10 +43,13 @@
   changed_when: false
 
 - debug:
-    var:
-      - dbd_oracle_installed
-      - find_oracle_home
-      - find_oracle_lib
+    var: dbd_oracle_installed
+
+- debug:
+    var: find_oracle_home
+
+- debug:
+    var: find_oracle_lib
 
 - name: Installs DBD::Oracle
   shell:
