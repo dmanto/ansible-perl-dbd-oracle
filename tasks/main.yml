@@ -27,14 +27,10 @@
 - debug:
     var: dbd_oracle_installed
 
-- cpanm:
-    name: DBI
-  become: yes
-
 - name: Installs DBD::Oracle
   shell:
     cmd: |
-      cpanm --look DBD::Oracle <<FINAL
+      cpanm DBI && cpanm --look DBD::Oracle <<FINAL
       perl Makefile.PL -l
       make
       make test

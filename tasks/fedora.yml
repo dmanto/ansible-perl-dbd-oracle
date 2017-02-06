@@ -9,10 +9,3 @@
     name:  "{{ item.path }}"
     state: latest
   with_items: "{{ oracle_rpms.files  | sort(attribute='path') }}"
-
-- name: Installs cpanm
-  dnf: name={{ item }} state=latest
-  with_items:
-    - tar
-    - perl-App-cpanminus
-  when: cpanm_installed.stdout == ''

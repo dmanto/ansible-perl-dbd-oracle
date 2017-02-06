@@ -26,7 +26,7 @@ env:
 
 before_install:
   # Pull container.
-  - 'docker pull geerlingguy/docker-${distro}-ansible:latest'
+  - 'docker pull dmanto/docker-${distro}-ansible-plenv-and-carton:latest'
 
 script:
   - container_id=$(mktemp)
