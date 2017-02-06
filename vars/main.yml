@@ -1,1 +1,1 @@
-app_user: "{{ app_user | default('vagrant') }}"
+app_user_internal: "{{ app_user | default('vagrant') }}"
