@@ -1,10 +1,10 @@
 ---
 - name: Check if cpanm is installed
-  shell: which cpanm
+  shell: plenv which cpanm
   ignore_errors: yes
   register: cpanm_installed
   become: yes
-  become_user: app_user
+  become_user: "{{ app_user }}"
   changed_when: false
 
 - include: "{{role_path}}/tasks/debian.yml"
@@ -25,7 +25,7 @@
   ignore_errors: yes
   register: dbd_oracle_installed
   become: yes
-  become_user: app_user
+  become_user: "{{ app_user }}"
   changed_when: false
 
 - debug:
@@ -34,7 +34,7 @@
 - name: Installs DBD::Oracle
   shell:
     cmd: |
-      cpanm DBI && cpanm --look DBD::Oracle <<FINAL
+      cd && cpanm DBI && cpanm --look DBD::Oracle <<FINAL
       perl Makefile.PL -l
       make
       make test
@@ -42,7 +42,7 @@
       exit
       FINAL
   become: yes
-  become_user: app_user
+  become_user: "{{ app_user }}"
   environment:
     - ORACLE_HOME: /usr/lib/oracle/12.1/client64
     - LD_LIBRARY_PATH: /usr/lib/oracle/12.1/client64/lib
