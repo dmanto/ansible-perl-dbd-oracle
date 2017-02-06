@@ -48,11 +48,8 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Ensure cpanm is installed.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "which cpanm"'
-
   # Ensure DBD::Oracle is installed.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "perl -MDBD::Oracle e 1"'
+  - 'docker exec --tty -u testuser "$(cat ${container_id})" env TERM=xterm bash -c "~/.plenv/bin/plenv exec perl -MDBD::Oracle -E say 1"'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
