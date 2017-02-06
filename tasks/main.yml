@@ -1,6 +1,6 @@
 ---
 - name: Check if cpanm is installed
-  command: bash plenv which cpanm
+  shell: ~/.plenv/bin/plenv which cpanm
   ignore_errors: yes
   register: cpanm_installed
   become: yes
@@ -21,7 +21,7 @@
     - ansible_distribution == 'Fedora'
 
 - name: Check if DBD::Oracle is installed
-  command: bash perl -MDBD::Oracle -E say '1'
+  shell: ~/.plenv/bin/plenv exec perl -MDBD::Oracle -E say '1'
   ignore_errors: yes
   register: dbd_oracle_installed
   become: yes
@@ -34,7 +34,9 @@
 - name: Installs DBD::Oracle
   shell:
     cmd: |
-      bash 'cd && cpanm DBI && cpanm --look DBD::Oracle' <<FINAL
+      cd
+      ~/.plenv/bin/plenv cpanm DBI
+      ~/.plenv/bin/plenv cpanm --look DBD::Oracle <<FINAL
       perl Makefile.PL -l
       make
       make test
