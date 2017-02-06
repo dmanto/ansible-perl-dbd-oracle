@@ -30,6 +30,7 @@
 
 - name: Find oracle_home
   shell: find / -type d -name bin 2>/dev/null|grep /oracle/|rev|cut -c 5-|rev
+  ignore_errors: yes
   register: find_oracle_home
   become: yes
   become_user: "{{ app_user_internal }}"
@@ -37,6 +38,7 @@
 
 - name: Find oracle_lib
   shell: find / -type d -name lib 2>/dev/null|grep /oracle/
+  ignore_errors: yes
   register: find_oracle_lib
   become: yes
   become_user: "{{ app_user_internal }}"
