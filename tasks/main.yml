@@ -35,8 +35,8 @@
   shell:
     cmd: |
       cd
-      ~/.plenv/bin/plenv cpanm DBI
-      ~/.plenv/bin/plenv cpanm --look DBD::Oracle <<FINAL
+      ~/.plenv/bin/plenv exec cpanm DBI
+      ~/.plenv/bin/plenv exec cpanm --look DBD::Oracle <<FINAL
       perl Makefile.PL -l
       make
       make test
