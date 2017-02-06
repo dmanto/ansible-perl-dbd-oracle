@@ -21,7 +21,7 @@
     - ansible_distribution == 'Fedora'
 
 - name: Check if DBD::Oracle is installed
-  shell: ~/.plenv/bin/plenv exec perl -MDBD::Oracle -E say '1'
+  shell: ~/.plenv/bin/plenv exec perl -MDBD::Oracle -E 'say 1'
   ignore_errors: yes
   register: dbd_oracle_installed
   become: yes
