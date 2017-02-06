@@ -1,5 +1,5 @@
 ---
-- name: Check if cpanm is installed
+- name: Check if plenv and cpanm are installed
   shell: ~/.plenv/bin/plenv which cpanm
   ignore_errors: yes
   register: cpanm_installed
@@ -28,8 +28,25 @@
   become_user: "{{ app_user_internal }}"
   changed_when: false
 
+- name: Find oracle_home
+  shell: find / -type d -name bin 2>/dev/null|grep /oracle/|rev|cut -c 5-|rev
+  register: find_oracle_home
+  become: yes
+  become_user: "{{ app_user_internal }}"
+  changed_when: false
+
+- name: Find oracle_lib
+  shell: find / -type d -name lib 2>/dev/null|grep /oracle/
+  register: find_oracle_lib
+  become: yes
+  become_user: "{{ app_user_internal }}"
+  changed_when: false
+
 - debug:
-    var: dbd_oracle_installed
+    var:
+      - dbd_oracle_installed
+      - find_oracle_home
+      - find_oracle_lib
 
 - name: Installs DBD::Oracle
   shell:
@@ -46,7 +63,7 @@
   become: yes
   become_user: "{{ app_user_internal }}"
   environment:
-    - ORACLE_HOME: /usr/lib/oracle/12.1/client64
-    - LD_LIBRARY_PATH: /usr/lib/oracle/12.1/client64/lib
+    - ORACLE_HOME: "{{ find_oracle_home.stdout }}"
+    - LD_LIBRARY_PATH: "{{ find_oracle_lib.stdout }}"
   when: dbd_oracle_installed.stdout != '1'
   
