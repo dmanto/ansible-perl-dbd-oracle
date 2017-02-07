@@ -29,7 +29,7 @@
   changed_when: false
 
 - name: Find oracle_home
-  shell: find / -type d -name bin 2>/dev/null|grep /oracle/|rev|cut -c 5-|rev
+  shell: ~/.plenv/bin/plenv exec perl -MFile::Find -E 'my $t={};find(sub {my $d = $File::Find::dir;$t->{$d} = "$1\n" if $d =~ m!(.*/oracle/.*)/bin$!; END: print values %$t}, "/")'
   ignore_errors: yes
   register: find_oracle_home
   become: yes
@@ -37,7 +37,7 @@
   changed_when: false
 
 - name: Find oracle_lib
-  shell: find / -type d -name lib 2>/dev/null|grep /oracle/
+  shell: ~/.plenv/bin/plenv exec perl -MFile::Find -E 'my $t={};find(sub {my $d = $File::Find::dir;$t->{$d} = "$1\n" if $d =~ m!(.*/oracle/.*/lib)$!; END: print values %$t}, "/")'
   ignore_errors: yes
   register: find_oracle_lib
   become: yes
