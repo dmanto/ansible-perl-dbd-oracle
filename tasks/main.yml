@@ -7,6 +7,11 @@
   become_user: "{{ app_user_internal }}"
   changed_when: false
 
+- assert:
+    that:
+      - "cpanm_installed.stdout != ''"
+    msg: "This role requires that plenv and cpanm be installed in advance"
+
 - include: "{{role_path}}/tasks/debian.yml"
   when: ansible_os_family == 'Debian'
 
@@ -46,12 +51,15 @@
 
 - debug:
     var: dbd_oracle_installed
+    verbosity: 1
 
 - debug:
     var: find_oracle_home
+    verbosity: 1
 
 - debug:
     var: find_oracle_lib
+    verbosity: 1
 
 - name: Installs DBD::Oracle
   shell:
